@@ -7,17 +7,18 @@
         <Product>OpenFrafsuallyLib</Product>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>OpenFrafsuallyLib</Title>
-        <Copyright>2020 (c) AluminiumTech</Copyright>
+        <Copyright>2021 (c) AluminiumTech</Copyright>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseFile>License.md</PackageLicenseFile>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/OpenFrafsually/FrafsuallyLib.CSharp</RepositoryUrl>
-        <PackageReleaseNotes>## Changes
-* Fixed an issue with calculating percentile FrameTimes correctly (affects 1.0.0 and 1.1.0)
-* Added a new method to IAverageFrameRateCalculator and AverageFrameRateCalculator ``PercentileOf(double percentage, FrameTimes[] )``</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes
+* API changes from removal of ``AverageFrameTime`` and moving to new ``FrameTimes`` class
+* Moved individual Frame info to a new ``Frame`` class which each ``FrameTime`` class holds one of.
+* Minor fixes</PackageReleaseNotes>
         <Description>A library to perform calculations related to Frametimes and framerates and FrameTime and AverageFrameRate models.</Description>
         <PackageVersion>1.1.1</PackageVersion>
-        <Version>1.1.1</Version>
+        <Version>1.2.0</Version>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
 
