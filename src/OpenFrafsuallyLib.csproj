@@ -5,6 +5,7 @@
         <Authors>AluminiumTech</Authors>
         <Company>AluminiumTech</Company>
         <Product>OpenFrafsuallyLib</Product>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>OpenFrafsuallyLib</Title>
         <Copyright>2020 (c) AluminiumTech</Copyright>
@@ -18,7 +19,6 @@
         <Description>A library to perform calculations related to Frametimes and framerates and FrameTime and AverageFrameRate models.</Description>
         <PackageVersion>1.1.1</PackageVersion>
         <Version>1.1.1</Version>
-        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

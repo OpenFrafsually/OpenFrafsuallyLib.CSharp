@@ -18,7 +18,6 @@
  */
 
 using OpenFrafsuallyLib.DataSources.Definition;
-
 using OpenFrafsuallyLib.Models;
 
 namespace OpenFrafsuallyLib.DataSources.Implementation
