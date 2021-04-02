@@ -29,14 +29,19 @@ namespace OpenFrafsuallyLib.Models
     {
         protected FrameTimeCalculator _frameTimeCalculator;
 
+        public Frame frame { get; set; }
+
         public FrameTime()
         {
             _frameTimeCalculator = new FrameTimeCalculator();
+
+            frame = new Frame();
         }
 
         /// <summary>
         /// 
         /// </summary>
+        [Obsolete("This function is being considered for removal in a future version.")]
         public double FrameTimeMilliseconds =>
            _frameTimeCalculator.CalculateFrameTimesMilliseconds(_frameTimeCalculator.CalculateFramesPerSecond(1,
                Convert.ToDouble(TimeMilliseconds / 1000.0)));
@@ -44,21 +49,6 @@ namespace OpenFrafsuallyLib.Models
         /// <summary>
         /// 
         /// </summary>
-        public long FrameNumber { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public double TimeMilliseconds => Math.Abs(StartTimeMilliseconds - EndTimeMilliseconds);
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public double StartTimeMilliseconds { get; set; }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public double EndTimeMilliseconds { get; set; }
+        public double TimeMilliseconds => Math.Abs(frame.StartTimeMilliseconds - frame.EndTimeMilliseconds);
     }
 }

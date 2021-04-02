@@ -77,7 +77,7 @@ namespace OpenFrafsuallyLib.Models.Implementation
         }
         
         /// <summary>
-        /// 
+        /// Adds every  frametime array to the FrameTimes collection.
         /// </summary>
         /// <param name="frameTimesArray"></param>
         public void Add(FrameTime[] frameTimesArray)
@@ -92,10 +92,7 @@ namespace OpenFrafsuallyLib.Models.Implementation
         /// 
         /// </summary>
         /// <param name="frameTimesList"></param>
-        public void Add(List<FrameTime> frameTimesList)
-        {
-            Add(FrameTimesList.ToArray());
-        }
+        public void Add(List<FrameTime> frameTimesList) => Add(FrameTimesList.ToArray());
         
         /// <summary>
         /// 
@@ -113,11 +110,8 @@ namespace OpenFrafsuallyLib.Models.Implementation
         /// 
         /// </summary>
         /// <param name="frameTimesList"></param>
-        public void Remove(List<FrameTime> frameTimesList)
-        {
-            Remove(FrameTimesList.ToArray());
-        }
-        
+        public void Remove(List<FrameTime> frameTimesList) => Remove(FrameTimesList.ToArray());
+
         /// <summary>
         /// 
         /// </summary>

@@ -60,8 +60,10 @@ namespace OpenFrafsuallyLib.DataSources.Implementation
                         var currentTime = csv.GetField<double>(timeColumnName);
                         var frameNumber = csv.GetField<long>(frameNumberColumnName);
 
-                        FrameTime frameTime = new FrameTime
-                        {
+                        FrameTime frameTime = new FrameTime();
+
+                        frameTime.frame = new Frame
+                        {                          
                             FrameNumber = frameNumber,
                             StartTimeMilliseconds = previousTime,
                             EndTimeMilliseconds = currentTime
