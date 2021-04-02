@@ -17,7 +17,7 @@
 * Moved individual Frame info to a new ``Frame`` class which each ``FrameTime`` class holds one of.
 * Minor fixes</PackageReleaseNotes>
         <Description>A library to perform calculations related to Frametimes and framerates and FrameTime and AverageFrameRate models.</Description>
-        <PackageVersion>1.1.1</PackageVersion>
+        <PackageVersion>1.2.0</PackageVersion>
         <Version>1.2.0</Version>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
