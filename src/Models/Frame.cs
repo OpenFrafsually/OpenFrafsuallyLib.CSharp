@@ -43,6 +43,11 @@ namespace OpenFrafsuallyLib.Models
         public double EndTimeMilliseconds { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public double TimeMilliseconds => Math.Abs(StartTimeMilliseconds - EndTimeMilliseconds);
+
+        /// <summary>
         /// The horizontal resolution of the frame being rendered measured in pixels.
         /// </summary>
         public int HorizontalResolutionPixels { get; set; }

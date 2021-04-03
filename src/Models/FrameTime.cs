@@ -41,14 +41,9 @@ namespace OpenFrafsuallyLib.Models
         /// <summary>
         /// 
         /// </summary>
-        [Obsolete("This function is being considered for removal in a future version.")]
         public double FrameTimeMilliseconds =>
            _frameTimeCalculator.CalculateFrameTimesMilliseconds(_frameTimeCalculator.CalculateFramesPerSecond(1,
-               Convert.ToDouble(TimeMilliseconds / 1000.0)));
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public double TimeMilliseconds => Math.Abs(frame.StartTimeMilliseconds - frame.EndTimeMilliseconds);
+               Convert.ToDouble(frame.TimeMilliseconds / 1000.0)));
+       
     }
 }
