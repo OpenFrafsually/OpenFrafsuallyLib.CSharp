@@ -173,7 +173,8 @@ namespace OpenFrafsuallyLib.Models.Implementation
         /// <returns></returns>
         public double CalculatePercentileFps(double percentage)
         {
-            return PercentileOf(percentage).FrameTimeMilliseconds;
+            var seconds = PercentileOf(percentage).FrameTimeMilliseconds / 1000.0;
+            return _frameTimeCalculator.CalculateFramesPerSecond(1, seconds);
         }
         
         /// <summary>
