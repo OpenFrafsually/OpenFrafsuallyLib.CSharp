@@ -97,7 +97,7 @@ namespace OpenFrafsuallyLib.Models.Implementation
                FrameTimesList.Add(frameTime);
             }
 
-            SortFrameTimeList();
+            PerformFrameTimeSorting();
         }
         
         /// <summary>
@@ -117,7 +117,7 @@ namespace OpenFrafsuallyLib.Models.Implementation
                 this.FrameTimesList.Remove(frameTimesArray[index]);
             }
 
-            SortFrameTimeList();
+            PerformFrameTimeSorting();
         }
         
         /// <summary>
@@ -206,14 +206,14 @@ namespace OpenFrafsuallyLib.Models.Implementation
                 throw new Exception("Error: Inappropriate percentage value (less than 0%) provided as parameter.");
             }
 
-            SortFrameTimeList();
+            PerformFrameTimeSorting();
             
             //No rounding necessary cos Int32.
             //percentileIndex = Math.Round(percentileIndex, 0, MidpointRounding.ToEven);
             return SortedFrameTimes[Convert.ToInt32(percentage / 100) * FrameTimesList.ToArray().Length];
         }
 
-        protected void SortFrameTimeList()
+        protected void PerformFrameTimeSorting()
         {
             SortedFrameTimes.Clear();
 

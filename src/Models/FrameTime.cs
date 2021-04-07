@@ -18,6 +18,7 @@
  */
 
 using System;
+
 using OpenFrafsuallyLib.Calculators.Implementation;
 
 namespace OpenFrafsuallyLib.Models
