@@ -11,13 +11,13 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseFile>License.md</PackageLicenseFile>
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/OpenFrafsually/FrafsuallyLib.CSharp</RepositoryUrl>
+        <RepositoryUrl>https://github.com/OpenFrafsually/OpenFrafsuallyLibCSharp</RepositoryUrl>
         <PackageReleaseNotes>### Changes
 * Removed Obsoletion warning on FrameTimeMilliseconds
 * Fixed issues with calculating percentile Frames Per Second.
 </PackageReleaseNotes>
         <Description>A library to perform calculations related to Frametimes and framerates and FrameTime and AverageFrameRate models.</Description>
-        <PackageVersion>1.2.0</PackageVersion>
+        <PackageVersion>1.3.0</PackageVersion>
         <Version>1.3.0</Version>
         <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
