@@ -21,35 +21,30 @@ using System;
 
 using OpenFrafsuallyLib.Calculators.Implementation;
 
-using OpenFrafsuallyLib.Models.Definition;
-
 namespace OpenFrafsuallyLib.Models
 {
     /// <summary>
     /// A class to model a FrameTime of individual frames.
     /// </summary>
-    public class FrameTime : IFrameTime
+    public class FrameTime
     {
         protected FrameTimeCalculator _frameTimeCalculator;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        Frame IFrameTime.frame { get; set; }
+        public Frame frame { get; set; }
 
         public FrameTime()
         {
             _frameTimeCalculator = new FrameTimeCalculator();
 
-            ((IFrameTime)this).frame = new Frame();
+            frame = new Frame();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        double IFrameTime.FrameTimeMilliseconds =>
-           ((Calculators.Definition.IFrameTimeCalculator)_frameTimeCalculator).CalculateFrameTimesMilliseconds(((Calculators.Definition.IFrameTimeCalculator)_frameTimeCalculator).CalculateFramesPerSecond(1,
-               Convert.ToDouble(((IFrameTime)this).frame.TimeMilliseconds / 1000.0)));
+        public double FrameTimeMilliseconds =>
+           _frameTimeCalculator.CalculateFrameTimesMilliseconds(_frameTimeCalculator.CalculateFramesPerSecond(1,
+               Convert.ToDouble(frame.TimeMilliseconds / 1000.0)));
        
     }
 }

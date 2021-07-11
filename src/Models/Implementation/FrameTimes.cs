@@ -33,86 +33,49 @@ namespace OpenFrafsuallyLib.Models.Implementation
     /// </summary>
     public class FrameTimes : IFrameTimes
     {
-         List<FrameTime> IFrameTimes.FrameTimesList { get; set; }
+        public List<FrameTime> FrameTimesList { get; set; }
 
         protected Dictionary<double, FrameTime> SortedFrameTimes;
 
         protected FrameTimeCalculator _frameTimeCalculator;
         
         
-         int IFrameTimes.NumberOfFrames => FrameTimesList.Count;
+        public int NumberOfFrames => FrameTimesList.Count;
 
         /// <summary>
         /// 1.0% Lows Frame rates
         /// </summary>
-        double IFrameTimes.OnePercentLowsFps => CalculatePercentileFps(1.0);
+        public double OnePercentLowsFps => CalculatePercentileFps(1.0);
         
         /// <summary>
         /// 0.1% Lows Frame rates
         /// </summary>
-         double IFrameTimes.ZeroPointOnePercentLowsFps => CalculatePercentileFps(0.1);
+        public double ZeroPointOnePercentLowsFps => CalculatePercentileFps(0.1);
 
-         double IFrameTimes.MaximumFps => _frameTimeCalculator.CalculateFramesPerSecond(NumberOfFrames, ((IFrameTime)SortedFrameTimes[NumberOfFrames]).FrameTimeMilliseconds / 1000);
+        public double MaximumFps => _frameTimeCalculator.CalculateFramesPerSecond(NumberOfFrames, SortedFrameTimes[NumberOfFrames].FrameTimeMilliseconds / 1000);
 
-         double IFrameTimes.MinimumFps => _frameTimeCalculator.CalculateFramesPerSecond(0, ((IFrameTime)SortedFrameTimes[NumberOfFrames]).FrameTimeMilliseconds / 1000);
+        public double MinimumFps => _frameTimeCalculator.CalculateFramesPerSecond(0, SortedFrameTimes[NumberOfFrames].FrameTimeMilliseconds / 1000);
+
 
         /// <summary>
         /// 25% Percentile Frame rates
         /// </summary>
-         double IFrameTimes.LowerQuartileFps => CalculatePercentileFps(25.0);
+        public double LowerQuartileFps => CalculatePercentileFps(25.0);
         
         /// <summary>
         /// 50% Percentile Frame rates
         /// </summary>
-         double IFrameTimes.MedianFps => CalculatePercentileFps(50.0);
+        public double MedianFps => CalculatePercentileFps(50.0);
         
         /// <summary>
         /// 75% Percentile Frame rates
         /// </summary>
-         double IFrameTimes.UpperQuartileFps => CalculatePercentileFps(75.0);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        double IFrameTimes.ArithmeticAverageFps
-        {
-            get
-            {
-                double average = 0.0;
-
-                foreach (FrameTime frameTime in FrameTimesList)
-                {
-                    var seconds = ((IFrameTime)frameTime).frame.TimeMilliseconds / 1000.0;
-
-                    average += ((Calculators.Definition.IFrameTimeCalculator)_frameTimeCalculator).CalculateFramesPerSecond(1, seconds);
-                }
-
-                return average / Convert.ToDouble(FrameTimesList.Count);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        double IFrameTimes.GeometricAverageFps
-        {
-            get
-            {
-                double average = 0.0;
-
-                foreach (FrameTime frameTime in FrameTimesList)
-                {
-                    var seconds = ((IFrameTime)frameTime).frame.TimeMilliseconds / 1000.0;
-
-                    average *= ((Calculators.Definition.IFrameTimeCalculator)_frameTimeCalculator).CalculateFramesPerSecond(1, seconds);
-                }
-
-                return Math.Pow(average, (1.0 / Convert.ToDouble(FrameTimesList.Count)));
-            }
-        }
-
+        public double UpperQuartileFps => CalculatePercentileFps(75.0);
+        
         public FrameTimes()
-        {        
+        {
+            FrameTimesList = new List<FrameTime>();
+            
             _frameTimeCalculator = new FrameTimeCalculator();
 
             SortedFrameTimes = new Dictionary<double, FrameTime>();
@@ -163,8 +126,59 @@ namespace OpenFrafsuallyLib.Models.Implementation
         /// <param name="frameTimesList"></param>
         public void Remove(List<FrameTime> frameTimesList) => Remove(FrameTimesList.ToArray());
 
-        public List<FrameTime> ToList()=> FrameTimesList;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<FrameTime> ToList()
+        {
+            return FrameTimesList;
+        }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public FrameTime[] ToArray()
+        {
+            return FrameTimesList.ToArray();
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public double GetAverageFpsUsingGeometricMean()
+        {
+            double average = 0.0;
+
+            foreach(FrameTime frameTime in FrameTimesList)
+            {
+                var seconds = frameTime.frame.TimeMilliseconds / 1000.0;
+
+                average *= _frameTimeCalculator.CalculateFramesPerSecond(1, seconds);
+            }
+            
+            return Math.Pow(average, (1.0 / Convert.ToDouble(FrameTimesList.Count)));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public double GetAverageFpsUsingArithmeticMean()
+        {
+            double average = 0.0;
+            
+            foreach (FrameTime frameTime in FrameTimesList)
+            {
+                var seconds = frameTime.frame.TimeMilliseconds / 1000.0;
+
+                average += _frameTimeCalculator.CalculateFramesPerSecond(1, seconds);
+            }
+
+            return average / Convert.ToDouble(FrameTimesList.Count);
+        }
         
         /// <summary>
         /// 
@@ -173,8 +187,8 @@ namespace OpenFrafsuallyLib.Models.Implementation
         /// <returns></returns>
         public double CalculatePercentileFps(double percentage)
         {
-            var seconds = ((IFrameTime)PercentileOf(percentage)).FrameTimeMilliseconds / 1000.0;
-            return ((Calculators.Definition.IFrameTimeCalculator)_frameTimeCalculator).CalculateFramesPerSecond(1, seconds);
+            var seconds = PercentileOf(percentage).FrameTimeMilliseconds / 1000.0;
+            return _frameTimeCalculator.CalculateFramesPerSecond(1, seconds);
         }
         
         /// <summary>
@@ -211,15 +225,15 @@ namespace OpenFrafsuallyLib.Models.Implementation
 
             foreach(FrameTime frametime in FrameTimesList)
             {
-                if(((IFrameTime)frametime).FrameTimeMilliseconds < previousFrameTimeMilliseconds)
+                if(frametime.FrameTimeMilliseconds < previousFrameTimeMilliseconds)
                 {
                     SortedFrameTimesList.Insert(index, frametime);
                 }
-                else if(((IFrameTime)frametime).FrameTimeMilliseconds == previousFrameTimeMilliseconds)
+                else if(frametime.FrameTimeMilliseconds == previousFrameTimeMilliseconds)
                 {
                     SortedFrameTimesList.Insert(index + 1, frametime);
                 }
-                else if(((IFrameTime)frametime).FrameTimeMilliseconds > previousFrameTimeMilliseconds)
+                else if(frametime.FrameTimeMilliseconds > previousFrameTimeMilliseconds)
                 {
                     SortedFrameTimesList.Insert(index + 1, frametime);
                 }

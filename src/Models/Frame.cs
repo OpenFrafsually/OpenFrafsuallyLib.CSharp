@@ -17,7 +17,6 @@
     USA
  */
 
-using OpenFrafsuallyLib.Models.Definition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +25,22 @@ using System.Threading.Tasks;
 
 namespace OpenFrafsuallyLib.Models
 {
-    public class Frame : IFrame
+    public class Frame
     {
+        /// <summary>
+        /// The frame number in a series of frames
+        /// </summary>
+        public long FrameNumber { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public double StartTimeMilliseconds { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double EndTimeMilliseconds { get; set; }
 
         /// <summary>
         /// 
@@ -49,9 +61,5 @@ namespace OpenFrafsuallyLib.Models
         /// The total number of pixels rendered in this frame, calculated by multiplying the horizontal and vertical resolutions together.
         /// </summary>
         public double TotalNumberOfPixelsRendered => Convert.ToDouble(VerticalResolutionPixels * HorizontalResolutionPixels);
-
-        long IFrame.FrameNumber { get; set; }
-        double IFrame.StartTimeMilliseconds { get; set; }
-        double IFrame.EndTimeMilliseconds { get; set; }
     }
 }

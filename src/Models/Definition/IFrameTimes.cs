@@ -17,28 +17,18 @@
     USA
  */
 
-using System.Collections.Generic;
-
 namespace OpenFrafsuallyLib.Models.Definition
 {
     public interface IFrameTimes
     {
-        public double OnePercentLowsFps { get; }
 
-        public double ZeroPointOnePercentLowsFps { get; }
+        public double GetAverageFpsUsingGeometricMean();
 
+        public double GetAverageFpsUsingArithmeticMean();
 
-        public double MinimumFps { get; }
-        public double MaximumFps { get; }
-
-        public double LowerQuartileFps { get; }
-        public double MedianFps { get; }
-
-        public double UpperQuartileFps { get; }
-
-
-        public double ArithmeticAverageFps { get; }
-        public double GeometricAverageFps { get; }
+        public double CalculatePercentileFps(double percentage);
+        
+        public FrameTime PercentileOf(double percentage);
 
     }
 }
