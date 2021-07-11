@@ -20,6 +20,7 @@
 using OpenFrafsuallyLib.DataSources.Definition;
 
 using OpenFrafsuallyLib.Models;
+using OpenFrafsuallyLib.Models.Implementation;
 
 namespace OpenFrafsuallyLib.DataSources.Implementation
 {
@@ -34,10 +35,20 @@ namespace OpenFrafsuallyLib.DataSources.Implementation
         /// </summary>
         /// <param name="pathToFrapsFrameTimesFile"></param>
         /// <returns></returns>
-        public FrameTime[] GetFrameTimesFromDataSource(string pathToFrapsFrameTimesFile)
+        public FrameTime[] GetFrameTimeArrayFromDataSource(string pathToFrapsFrameTimesFile)
         {
             CsvDataSourceProvider csvDataSourceProvider = new CsvDataSourceProvider();
             return csvDataSourceProvider.GetDataFromColumns(pathToFrapsFrameTimesFile, "Time (ms)", "Frame");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pathToDataSource">Path to the fraps `frametimes.csv` file.</param>
+        /// <returns></returns>
+        public FrameTimes GetFrameTimesFromDataSource(string pathToDataSource)
+        {
+            return new FrameTimes(GetFrameTimeArrayFromDataSource(pathToDataSource));
         }
     }
 }

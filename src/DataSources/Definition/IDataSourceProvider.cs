@@ -18,6 +18,7 @@
  */
 
 using OpenFrafsuallyLib.Models;
+using OpenFrafsuallyLib.Models.Implementation;
 
 namespace OpenFrafsuallyLib.DataSources.Definition
 {
@@ -31,7 +32,9 @@ namespace OpenFrafsuallyLib.DataSources.Definition
         /// </summary>
         /// <param name="pathToDataSource"></param>
         /// <returns></returns>
-        public FrameTime[] GetFrameTimesFromDataSource(string pathToDataSource);
+        public FrameTime[] GetFrameTimeArrayFromDataSource(string pathToDataSource);
+
+        public FrameTimes GetFrameTimesFromDataSource(string pathToDataSource);
 
     }
 }

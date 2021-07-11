@@ -62,7 +62,7 @@ namespace OpenFrafsuallyLib.DataSources.Implementation
 
                         FrameTime frameTime = new FrameTime();
 
-                        frameTime.frame = new Frame
+                        ((Models.Definition.IFrameTime)frameTime).frame = new Frame
                         {                          
                             FrameNumber = frameNumber,
                             StartTimeMilliseconds = previousTime,
